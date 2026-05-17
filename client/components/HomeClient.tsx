@@ -114,6 +114,7 @@ export default function HomeClient() {
                 Sivas Taksi Hizmeti
               </p>
               <h1 className="text-5xl md:text-8xl font-bold tracking-tight mb-2">Taksi 58 Sivas</h1>
+              <p className="text-xs md:text-sm text-white/70 mb-2">Oğuzhan Yıldız</p>
               <p className="text-lg md:text-3xl font-semibold text-white max-w-4xl mx-auto">
                 Sivas merkez, terminal, otogar, hastane ve universite bolgeleri icin 7/24 hizli ve guvenli taksi cagirin.
               </p>
