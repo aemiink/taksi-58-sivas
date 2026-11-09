@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://taksi58sivas.com/sitemap.xml

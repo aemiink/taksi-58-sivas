@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import GoogleAdsTag from "@/components/analytics/GoogleAdsTag";
+import { OG_IMAGE_URL, SITE_URL } from "@/lib/site";
 
-const siteUrl = "https://taksi58sivas.com";
-const heroImage = `${siteUrl}/gallery/taksi_08.png`;
+const siteUrl = SITE_URL;
+const heroImage = OG_IMAGE_URL;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -231,7 +233,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteSchema) }} />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <GoogleAdsTag />
+      </body>
     </html>
   );
 }

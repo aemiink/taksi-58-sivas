@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { blogPosts } from "@/lib/blog-data";
+import { TrackedPhoneHtml, TrackedPhoneLink, TrackedPhoneNumber } from "@/components/analytics/TrackedPhone";
+import { OG_IMAGE_URL, SITE_URL } from "@/lib/site";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -16,8 +18,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = blogPosts.find((p) => p.slug === slug);
   if (!post) return {};
 
-  const url = `https://taksi58sivas.com/blog/${post.slug}`;
-  const ogImage = "https://taksi58sivas.com/gallery/taksi_08.png";
+  const url = `${SITE_URL}/blog/${post.slug}`;
+  const ogImage = OG_IMAGE_URL;
   return {
     title: { absolute: post.title },
     description: post.metaDescription,
@@ -55,27 +57,27 @@ export default async function BlogPostPage({ params }: Props) {
     "@type": "BlogPosting",
     headline: post.title,
     description: post.metaDescription,
-    image: "https://taksi58sivas.com/gallery/taksi_08.png",
+    image: OG_IMAGE_URL,
     datePublished: post.publishDate,
     dateModified: post.publishDate,
     inLanguage: "tr-TR",
     author: {
       "@type": "Organization",
       name: "Taksi 58 Sivas",
-      url: "https://taksi58sivas.com",
+      url: SITE_URL,
     },
     publisher: {
       "@type": "Organization",
       name: "Taksi 58 Sivas",
-      url: "https://taksi58sivas.com",
+      url: SITE_URL,
       logo: {
         "@type": "ImageObject",
-        url: "https://taksi58sivas.com/gallery/taksi_08.png",
+        url: OG_IMAGE_URL,
       },
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://taksi58sivas.com/blog/${post.slug}`,
+      "@id": `${SITE_URL}/blog/${post.slug}`,
     },
   };
 
@@ -91,12 +93,11 @@ export default async function BlogPostPage({ params }: Props) {
           <Link href="/" className="text-xl font-bold text-[#FFD700]">
             Taksi 58 Sivas
           </Link>
-          <a
-            href="tel:05534074989"
+          <TrackedPhoneLink
             className="bg-[#FFD700] text-black font-bold px-4 py-2 rounded-lg text-sm hover:bg-[#FFC700] transition-colors"
           >
-            0553 407 49 89
-          </a>
+            <TrackedPhoneNumber />
+          </TrackedPhoneLink>
         </div>
       </header>
 
@@ -130,7 +131,7 @@ export default async function BlogPostPage({ params }: Props) {
           <div className="h-1 w-24 bg-[#FFD700] mt-6" />
         </header>
 
-        <div
+        <TrackedPhoneHtml
           className="prose prose-lg max-w-none text-gray-800
             [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-black [&_h2]:mt-10 [&_h2]:mb-4
             [&_h3]:text-xl [&_h3]:font-bold [&_h3]:text-black [&_h3]:mt-8 [&_h3]:mb-3
@@ -138,7 +139,7 @@ export default async function BlogPostPage({ params }: Props) {
             [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-5
             [&_li]:mb-2
             [&_strong]:font-bold [&_strong]:text-black"
-          dangerouslySetInnerHTML={{ __html: post.content }}
+          html={post.content}
         />
 
         {/* CTA */}
@@ -147,12 +148,11 @@ export default async function BlogPostPage({ params }: Props) {
           <p className="text-black/80 mb-6">
             Sivas&apos;ta 7/24 hizmet veriyoruz. Tek aramada kapınıza geliyoruz.
           </p>
-          <a
-            href="tel:05534074989"
+          <TrackedPhoneLink
             className="inline-flex items-center gap-3 bg-black text-[#FFD700] font-bold px-8 py-4 rounded-xl text-xl hover:bg-gray-900 transition-colors"
           >
-            0553 407 49 89
-          </a>
+            <TrackedPhoneNumber />
+          </TrackedPhoneLink>
         </div>
       </main>
 
@@ -183,12 +183,11 @@ export default async function BlogPostPage({ params }: Props) {
       <footer className="bg-black text-white px-4 py-8">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-white/70 text-sm">© 2025 Taksi 58 Sivas. Tüm hakları saklıdır.</p>
-          <a
-            href="tel:05534074989"
+          <TrackedPhoneLink
             className="bg-[#FFD700] text-black font-bold px-6 py-3 rounded-xl hover:bg-[#FFC700] transition-colors"
           >
-            0553 407 49 89 — Hemen Ara
-          </a>
+            <TrackedPhoneNumber /> — Hemen Ara
+          </TrackedPhoneLink>
         </div>
       </footer>
     </div>
