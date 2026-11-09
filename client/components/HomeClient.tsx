@@ -2,12 +2,14 @@
 
 import { motion } from "motion/react";
 import { Phone, MessageCircle, Clock, Shield, Users, Award, CheckCircle2, Star, MapPin, CarFront } from "lucide-react";
+import { useTrackedPhone } from "@/components/analytics/trackedPhoneStore";
+import { BUSINESS_PHONE } from "@/lib/site";
 
 const businessName = "Taksi 58 Sivas";
-const phoneNumber = "0553 407 49 89";
+// WhatsApp numarası Google yönlendirme numarasıyla değiştirilmez.
+const whatsappDisplayNumber = BUSINESS_PHONE;
 const whatsappNumber = "905534074989";
 const heroBackground = "/gallery/taksi_08.png";
-const callHref = `tel:${phoneNumber.replace(/\s/g, "")}`;
 const whatsappHref = `https://wa.me/${whatsappNumber}`;
 
 const galleryImages = [
@@ -58,6 +60,7 @@ const faqs = [
 ];
 
 export default function HomeClient() {
+  const { display: phoneNumber, telHref: callHref } = useTrackedPhone();
   return (
     <div className="min-h-screen bg-white">
       <a
@@ -449,7 +452,7 @@ export default function HomeClient() {
               <p>
                 WhatsApp:{" "}
                 <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="text-[#FFD700]">
-                  {phoneNumber}
+                  {whatsappDisplayNumber}
                 </a>
               </p>
               <p>Hizmet Bolgesi: Sivas Merkez ve cevresi</p>

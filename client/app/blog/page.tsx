@@ -1,26 +1,28 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { blogPosts } from "@/lib/blog-data";
+import { TrackedPhoneLink, TrackedPhoneNumber } from "@/components/analytics/TrackedPhone";
+import { absoluteUrl, OG_IMAGE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: { absolute: "Sivas Taksi Blog | Sivas'ta Taksi Hizmeti Rehberi | Taksi 58 Sivas" },
   description:
     "Sivas taksi hizmetleri hakkında kapsamlı rehberler. Terminal, havalimanı, hastane ve şehir içi taksi bilgileri. Taksi 58 Sivas blog sayfası.",
-  alternates: { canonical: "https://taksi58sivas.com/blog" },
+  alternates: { canonical: absoluteUrl("/blog") },
   openGraph: {
     title: "Sivas Taksi Blog | Taksi 58 Sivas",
     description: "Sivas taksi hizmetleri hakkında kapsamlı rehberler ve bilgi yazıları.",
-    url: "https://taksi58sivas.com/blog",
+    url: absoluteUrl("/blog"),
     type: "website",
     locale: "tr_TR",
     siteName: "Taksi 58 Sivas",
-    images: [{ url: "https://taksi58sivas.com/gallery/taksi_08.png", width: 1200, height: 630, alt: "Taksi 58 Sivas Blog" }],
+    images: [{ url: OG_IMAGE_URL, width: 1200, height: 630, alt: "Taksi 58 Sivas Blog" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Sivas Taksi Blog | Taksi 58 Sivas",
     description: "Sivas taksi hizmetleri hakkında kapsamlı rehberler ve bilgi yazıları.",
-    images: ["https://taksi58sivas.com/gallery/taksi_08.png"],
+    images: [OG_IMAGE_URL],
   },
 };
 
@@ -36,12 +38,11 @@ export default function BlogPage() {
           <Link href="/" className="text-xl font-bold text-[#FFD700]">
             Taksi 58 Sivas
           </Link>
-          <a
-            href="tel:05534074989"
+          <TrackedPhoneLink
             className="bg-[#FFD700] text-black font-bold px-4 py-2 rounded-lg text-sm hover:bg-[#FFC700] transition-colors"
           >
-            0553 407 49 89
-          </a>
+            <TrackedPhoneNumber />
+          </TrackedPhoneLink>
         </div>
       </header>
 
@@ -57,7 +58,7 @@ export default function BlogPage() {
           Sivas Taksi Rehberi & Blog
         </h1>
         <p className="text-lg text-gray-600 mb-12 max-w-3xl">
-          Sivas'ta taksi hizmetleri, transfer güzergahları, fiyatlar ve pratik bilgiler hakkında kapsamlı
+          Sivas&apos;ta taksi hizmetleri, transfer güzergahları, fiyatlar ve pratik bilgiler hakkında kapsamlı
           rehber yazıları. Taksi 58 Sivas olarak şeffaf ve bilgilendirici içerikler sunuyoruz.
         </p>
 
@@ -106,12 +107,11 @@ export default function BlogPage() {
       <footer className="bg-black text-white px-4 py-8 mt-16">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-white/70 text-sm">© 2025 Taksi 58 Sivas. Tüm hakları saklıdır.</p>
-          <a
-            href="tel:05534074989"
+          <TrackedPhoneLink
             className="bg-[#FFD700] text-black font-bold px-6 py-3 rounded-xl hover:bg-[#FFC700] transition-colors"
           >
-            0553 407 49 89 — Hemen Ara
-          </a>
+            <TrackedPhoneNumber /> — Hemen Ara
+          </TrackedPhoneLink>
         </div>
       </footer>
     </div>
